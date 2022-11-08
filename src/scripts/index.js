@@ -1,6 +1,7 @@
 /* eslint-disable no-constant-condition */
 import "../styles/index.scss";
 import { Javascript } from "../languages/javascripts";
+import $, { data } from "jquery";
 
 const carId = 100;
 console.log("result: " + carId);
@@ -182,3 +183,19 @@ p.then((m) => {
 }).catch((m) => {
   console.log("this is the error with the message " + m);
 });
+
+//jquery
+let promiseJquery = $.get("http://636a7bfcc07d8f936d9f7509.mockapi.io/users");
+
+let objectJqueryGet = null;
+promiseJquery.then(
+  (data) => {
+    objectJqueryGet = data;
+    console.log("successful: " + data);
+  },
+  (fail) => console.log("some fail: " + fail)
+);
+
+if (objectJqueryGet !== null) {
+  console.log("expanding the object get request" + objectJqueryGet.getName);
+}
