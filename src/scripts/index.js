@@ -1,11 +1,12 @@
 /* eslint-disable no-constant-condition */
 import "../styles/index.scss";
-import { Javascript, Promise } from "../languages/javascripts";
+import { Javascript } from "../languages/javascripts";
 
 const carId = 100;
 console.log("result: " + carId);
 
 //
+
 function dummy(...restParameter) {
   restParameter.forEach((parameter) => console.log(parameter));
 }
@@ -143,7 +144,7 @@ console.log(as.getName());
 //window object
 console.log(window.console);
 
-//dom ??????????????????
+//dom; changing the webpage font
 let domResult = document.getElementById("targetme");
 let domResult1 = document.getElementsByTagName("p");
 console.log(domResult);
@@ -154,24 +155,30 @@ console.log(domResult1);
 
 const parent = domResult1;
 
-// Array.prototype.forEach.call(parent, (child) => {
-//   console.log(child);
-//   child.style.color = "red";
-// });
-
-domResult1.forEach((element) => {
-  // element.style.color = "red";
-  console.log(element);
+Array.prototype.forEach.call(parent, (child) => {
+  console.log(child);
+  child.style.color = "red";
 });
-let domElement = domResult1;
-// domElement.style.color = 'red';
 
-//promises
-// let promise = new Promise(function (resolve, reject) {
-//   setTimeout(resolve, 10, "somevalue");
-// });
+// promises
+let promise = new Promise(function (resolve, reject) {
+  setTimeout(resolve, 10, "somevalue");
+});
 
-// promise.then(
-//   (value) => console.log("fullfilled" + value),
-//   (error) => console.log("rejected" + error)
-// );
+promise.then(
+  (value) => console.log("fullfilled " + value),
+  (error) => console.log("rejected " + error)
+);
+
+let p = new Promise((resolve, reject) => {
+  let mathResult = 1 + 1;
+  if (mathResult === 2) {
+    resolve("success");
+  } else reject("fail");
+});
+
+p.then((m) => {
+  console.log("success with the message " + m);
+}).catch((m) => {
+  console.log("this is the error with the message " + m);
+});
