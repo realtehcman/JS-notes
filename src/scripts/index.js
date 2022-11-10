@@ -185,7 +185,8 @@ p.then((m) => {
 });
 
 //jquery
-let promiseJquery = $.get("http://636a7bfcc07d8f936d9f7509.mockapi.io/users");
+const URL_MOCKAPI_IO = "http://636a7bfcc07d8f936d9f7509.mockapi.io//users";
+let promiseJquery = $.get(URL_MOCKAPI_IO);
 
 let objectJqueryGet = null;
 promiseJquery.then(
@@ -193,9 +194,85 @@ promiseJquery.then(
     objectJqueryGet = data;
     console.log("successful: " + data);
   },
-  (fail) => console.log("some fail: " + fail)
+  (fail) => {
+    console.log("some fail: " + fail);
+  }
 );
 
-if (objectJqueryGet !== null) {
-  console.log("expanding the object get request" + objectJqueryGet.getName);
-}
+// if (objectJqueryGet !== null) {
+//   console.log("expanding the object get request" + objectJqueryGet.getName);
+// }
+
+//working with jquery post
+let someDataForJqueryPost = {
+  name: "Abraham Lincoln",
+  avatar: "./src/images/webpack.png",
+};
+
+let promiseForPost = $.post(URL_MOCKAPI_IO, someDataForJqueryPost);
+
+// promiseForPost.then( (success, fail) =>{
+
+// }
+
+// )
+
+//testing two types of arrow functions
+// let simpleArrowFunction = (x, y) => {
+//   console.log("from a simple arrow function");
+//   console.log(x);
+//   console.log(y);
+// };
+
+// //arrow function that takes other arrow functions as parameters
+// let notObvArrowFunction =
+//   ((x) => {
+//     console.log("from not simple arrow function");
+//     console.log(x);
+//   },
+//   (y) => {
+//     console.log(y);
+//   });
+
+//   console.log(simpleArrowFunction(1, 2));
+//   console.log(notObvArrowFunction(1, 2));
+
+//handling user data
+
+let form = document.getElementById("my-form");
+
+form.addEventListener("submit", (event) => {
+  let name = form.elements["user-name"];
+  let avatar = form.elements["avatar"];
+  let error = document.getElementById("name-error"); //important not to mess this line
+
+  if (name.value.length < 3) {
+    error.textContent = "Invalid input";
+    error.style.color = "green";
+    error.style.borderColor = "red";
+    name.focus;
+
+    event.preventDefault();
+  }
+  console.log(name.value + " " + avatar.value);
+});
+
+//
+const fruits = ["apple", "banana", "orange"];
+
+console.log("test");
+console.log(fruits.map((fruit) => fruit.length));
+
+let testVar = (a, b) => a + b;
+console.log(testVar(1, 2));
+
+const obj = {
+  num: 2,
+};
+
+// eslint-disable-next-line no-undef
+globalThis.name = "new name";
+
+let performConcat = (name) => name + " was catinating";
+console.log(performConcat.call(obj, 23));
+
