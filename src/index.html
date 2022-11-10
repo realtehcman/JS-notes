@@ -17,18 +17,25 @@
     </p>
     <p id="targetme">JS practiced by Max Dmyterko</p>
 
-    <form
-      id="my-form"
-      action="/somepath"
-      method="post"
-      enctype="multipart/form-data"
-    >
-      <input id="submit" type="text" name="user-name" placeholder="User name" />
+    <form id="my-form" action="/somepath" method="post">
+      <input type="text" name="user-name" placeholder="User name" />
       <span id="name-error"></span>
       <br />
       <input type="text" name="avatar" placeholder="Avatar" />
+      <br />
       <span id="avatar-error"></span>
       <button type="submit">Submit</button>
+    </form>
+
+    <br />
+    <br />
+    <br />
+    <form id="my-mockapi-form"  action="/somepath" method="post">
+      <input type="text" name="new-name" placeholder="new name" />
+      <span id="new-name-error"></span>
+
+      <input type="text" name="new-avatar" placeholder="new avatar" />
+      <button type="submit">post</button>
     </form>
   </body>
 </html>

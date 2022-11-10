@@ -1,7 +1,7 @@
 /* eslint-disable no-constant-condition */
 import "../styles/index.scss";
 import { Javascript } from "../languages/javascripts";
-import $, { data } from "jquery";
+import $, { data, event } from "jquery";
 
 const carId = 100;
 console.log("result: " + carId);
@@ -276,3 +276,58 @@ globalThis.name = "new name";
 let performConcat = (name) => name + " was catinating";
 console.log(performConcat.call(obj, 23));
 
+//post request
+
+let postForm = document.getElementById("my-mockapi-form");
+postForm.addEventListener("submit", (listener) => {
+  let newName = postForm.elements["new-name"];
+  let link = postForm.elements["new-avatar"];
+
+  let postRequest = [
+    {
+      name: newName.value,
+      avatar: link.value,
+    },
+  ];
+
+  let postPromise = $.post(
+    "http://636a7bfcc07d8f936d9f7509.mockapi.io/users",
+    postRequest
+  );
+
+  // if (newName.value === "") {
+  //   error.text = "can't be empty";
+  //   error.style.color = "red";
+  //   newName.focus;
+  //   event.preventDefault();
+  // }
+
+  postPromise.then(
+    (success) => console.log("post succeeded ", success),
+    (fail) => console.log("post failed ", fail)
+  );
+  event.preventDefault();
+});
+
+
+// let form = document.getElementById("user-form");
+// form.addEventListener("submit", (event) => {
+//   let user = form.elements["user"];
+//   let avatarFile = form.elements["avatar-file"];
+
+//   let posting = {
+//     user: user.value,
+//     avatarFile: avatarFile.value,
+//   };
+
+//   let promise = $.post("link", posting);
+
+//   promise.then(
+//     (data) => console.log("success: ", data),
+//     (error) => console.log("error: ", error)
+//   );
+
+//   event.preventDefault();
+// });
+
+//security
